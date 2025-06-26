@@ -5,18 +5,23 @@ function sortear() {
      let sorteados = [];
      let numero;
 
-     for (let i = 0; i < quantidade; i++) {
-          numero = gerarNumeroAleatorio(de, ate);
-
-          while (sorteados.includes(numero)) {
+     if (de >= ate) {
+          alert('Campo "Do número" deve ser inferior ao campo "Até o numero". Verifique e tente novamente');
+          return;
+     } else {
+          for (let i = 0; i < quantidade; i++) {
                numero = gerarNumeroAleatorio(de, ate);
-          }
+          
+               while (sorteados.includes(numero)) {
+                    numero = gerarNumeroAleatorio(de, ate);
+               }
 
-          sorteados.push(numero);
+                    sorteados.push(numero);
+          }
+          let resultado = document.getElementById('resultado');
+          resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados: ${sorteados}</label>`;
+          alterarStatusBotao();
      }
-     let resultado = document.getElementById('resultado');
-     resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados: ${sorteados}</label>`;
-     alterarStatusBotao();
 }
 
 function gerarNumeroAleatorio(min, max) {
